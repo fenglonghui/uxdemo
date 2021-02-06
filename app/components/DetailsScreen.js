@@ -3,7 +3,7 @@
  * @Author: ""
  * @Date: 2021-02-04 11:15:48
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-02-05 11:50:34
+ * @LastEditTime: 2021-02-06 20:51:53
  * @Description:
  */
 import React, {Component} from 'react';
@@ -11,7 +11,8 @@ import {View, Text, Button, FlatList} from 'react-native';
 import StoreConnect from '../store/StoreConnect';
 
 @StoreConnect((state) => ({
-  user: state.user,
+    userlist: state.userlist,
+    listname: state.listname
 }))
 export default class DetailsScreen extends React.Component {
   render() {
@@ -23,9 +24,11 @@ export default class DetailsScreen extends React.Component {
           justifyContent: 'center',
           backgroundColor: 'gray',
         }}>
+        <Text>{this.props.listname}</Text>
+
         <FlatList
           keyExtractor={(item, index) => index.toString()}
-          data={this.props.user}
+          data={this.props.userlist}
           renderItem={({item}) => (
             <View>
               <Text>{item.id}</Text>
